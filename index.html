@@ -64,7 +64,12 @@
   .cat-desc { font-size: 11px; color: var(--ink-light); }
   .cat-count { font-size: 11px; color: var(--accent); margin-top: 6px; }
 
-  /* VIDEO PANEL - スマホでは全画面 */
+  /* LOADING */
+  .loading-screen { padding: 60px 20px; text-align: center; color: var(--ink-light); }
+  .spinner { width: 28px; height: 28px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* VIDEO PANEL */
   .video-panel { display: none; position: fixed; top: 56px; right: 0; width: 100%; max-width: 420px; height: calc(100vh - 56px); background: var(--white); border-left: 1px solid var(--border); overflow-y: auto; z-index: 50; animation: slideIn 0.25s ease; }
   .video-panel.open { display: block; }
   @keyframes slideIn { from{transform:translateX(20px);opacity:0} to{transform:translateX(0);opacity:1} }
@@ -87,78 +92,32 @@
   .admin-wrap { max-width: 720px; margin: 0 auto; padding: 32px 16px; }
   .admin-title { font-family: 'Shippori Mincho', serif; font-size: 20px; font-weight: 400; margin-bottom: 4px; }
   .admin-sub { color: var(--ink-light); font-size: 13px; margin-bottom: 24px; }
-
   .pw-manage-card { background: var(--accent-light); border: 1px solid rgba(61,107,79,0.25); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 24px; }
   .pw-manage-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
   .pw-manage-current { font-size: 20px; font-weight: 500; letter-spacing: 0.2em; color: var(--ink); font-family: monospace; margin-bottom: 4px; }
   .pw-manage-hint { font-size: 11px; color: var(--ink-light); margin-bottom: 12px; }
   .pw-change-form { display: flex; gap: 8px; }
   .pw-new-input { flex: 1; padding: 9px 14px; border: 1px solid rgba(61,107,79,0.3); border-radius: var(--radius); font-family: 'Noto Sans JP', sans-serif; font-size: 14px; outline: none; background: var(--white); }
-  .pw-new-input:focus { border-color: var(--accent); }
   .btn-pw-change { padding: 9px 18px; background: var(--accent); color: white; border: none; border-radius: var(--radius); font-family: 'Noto Sans JP', sans-serif; font-size: 13px; cursor: pointer; white-space: nowrap; }
   .pw-changed-msg { font-size: 12px; color: var(--accent); display: none; margin-top: 6px; }
   .pw-changed-msg.show { display: block; }
 
-  .add-form { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 24px; }
-  .add-form-title { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 14px; }
-  .form-col { display: flex; flex-direction: column; gap: 10px; }
-  .form-row-inline { display: flex; gap: 10px; align-items: flex-end; }
-  .form-group { flex: 1; }
-  .form-label { display: block; font-size: 11px; letter-spacing: 0.1em; color: var(--ink-light); text-transform: uppercase; margin-bottom: 6px; }
-  .form-input { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-family: 'Noto Sans JP', sans-serif; font-size: 14px; outline: none; background: var(--bg); }
-  .form-input:focus { border-color: var(--accent); background: var(--white); }
-  .btn-primary { width: 100%; padding: 11px; background: var(--accent); color: white; border: none; border-radius: var(--radius); font-family: 'Noto Sans JP', sans-serif; font-size: 14px; cursor: pointer; margin-top: 4px; }
-  .btn-primary:hover { opacity: 0.85; }
+  /* スプシ同期ボタン */
+  .sync-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--white); border: 1px solid var(--accent); color: var(--accent); border-radius: var(--radius); font-family: 'Noto Sans JP', sans-serif; font-size: 13px; cursor: pointer; transition: all 0.2s; margin-bottom: 24px; }
+  .sync-btn:hover { background: var(--accent); color: white; }
+  .sync-btn.loading { opacity: 0.6; cursor: not-allowed; }
+  .sync-status { font-size: 12px; color: var(--ink-light); margin-left: 8px; }
 
-  /* ADMIN LIST */
-  .admin-list { display: flex; flex-direction: column; gap: 14px; }
-  .admin-item { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-  .admin-item-header { padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
-  .admin-item-icon { font-size: 20px; flex-shrink: 0; }
-  .admin-item-info { flex: 1; min-width: 0; }
-  .admin-item-name { font-size: 13px; font-weight: 500; margin-bottom: 1px; }
-  .admin-item-desc { font-size: 11px; color: var(--ink-light); }
-  .admin-item-badge { font-size: 11px; padding: 3px 8px; border-radius: 10px; background: var(--accent-light); color: var(--accent); white-space: nowrap; flex-shrink: 0; }
-  .btn-toggle { padding: 6px 12px; background: none; border: 1px solid var(--border); color: var(--ink-light); border-radius: var(--radius); font-family: 'Noto Sans JP', sans-serif; font-size: 12px; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
-  .btn-toggle:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-delete { padding: 6px 10px; background: none; border: 1px solid var(--border); color: var(--ink-light); border-radius: var(--radius); font-size: 12px; cursor: pointer; flex-shrink: 0; }
-  .btn-delete:hover { border-color: var(--red); color: var(--red); }
+  .admin-list { display: flex; flex-direction: column; gap: 10px; }
+  .admin-cat-item { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+  .admin-cat-icon { font-size: 20px; flex-shrink: 0; }
+  .admin-cat-info { flex: 1; }
+  .admin-cat-name { font-size: 13px; font-weight: 500; }
+  .admin-cat-desc { font-size: 11px; color: var(--ink-light); }
+  .admin-cat-badge { font-size: 11px; padding: 3px 8px; border-radius: 10px; background: var(--accent-light); color: var(--accent); white-space: nowrap; }
 
-  /* VIDEO SECTION */
-  .video-section { border-top: 1px solid var(--border); padding: 16px; display: none; background: #fafaf8; }
-  .video-section.open { display: block; }
-  .video-section-title { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 12px; }
-  .url-add-area { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-  .url-input, .url-title-input, .url-memo-input { width: 100%; padding: 9px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-family: 'Noto Sans JP', sans-serif; font-size: 13px; outline: none; background: var(--white); }
-  .url-input:focus, .url-title-input:focus, .url-memo-input:focus { border-color: var(--accent); }
-  .btn-add-url { width: 100%; padding: 11px; background: var(--accent); color: white; border: none; border-radius: var(--radius); font-family: 'Noto Sans JP', sans-serif; font-size: 14px; cursor: pointer; }
-  .btn-add-url:hover { opacity: 0.85; }
-
-  /* REGISTERED VIDEO ITEMS */
-  .registered-videos { display: flex; flex-direction: column; gap: 10px; }
-  .rv-item { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-  .rv-item-main { display: flex; align-items: center; gap: 10px; padding: 10px; }
-  .rv-thumb { width: 72px; height: 41px; object-fit: cover; border-radius: 2px; background: var(--accent-light); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--accent); overflow: hidden; }
-  .rv-thumb img { width: 100%; height: 100%; object-fit: cover; }
-  .rv-info { flex: 1; min-width: 0; }
-  .rv-title { font-size: 12px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .rv-memo-preview { font-size: 11px; color: var(--ink-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .rv-actions { display: flex; gap: 6px; flex-shrink: 0; }
-  .btn-edit-video { padding: 5px 10px; background: none; border: 1px solid var(--border); color: var(--ink-light); border-radius: var(--radius); font-size: 11px; cursor: pointer; }
-  .btn-edit-video:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-remove-video { padding: 5px 8px; background: none; border: 1px solid var(--border); color: var(--ink-light); border-radius: var(--radius); font-size: 11px; cursor: pointer; }
-  .btn-remove-video:hover { border-color: var(--red); color: var(--red); }
-
-  /* EDIT FORM (inline) */
-  .rv-edit-form { border-top: 1px solid var(--border); padding: 10px; display: none; background: var(--bg); }
-  .rv-edit-form.open { display: block; }
-  .rv-edit-form input, .rv-edit-form textarea { width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius); font-family: 'Noto Sans JP', sans-serif; font-size: 13px; outline: none; background: var(--white); margin-bottom: 8px; }
-  .rv-edit-form textarea { resize: vertical; min-height: 60px; }
-  .rv-edit-form input:focus, .rv-edit-form textarea:focus { border-color: var(--accent); }
-  .btn-save-edit { padding: 8px 20px; background: var(--accent); color: white; border: none; border-radius: var(--radius); font-family: 'Noto Sans JP', sans-serif; font-size: 13px; cursor: pointer; }
-
-  .no-videos-hint { font-size: 12px; color: var(--ink-light); font-style: italic; padding: 6px 0; }
   .empty-state { text-align: center; padding: 40px 20px; color: var(--ink-light); font-size: 13px; }
+  .sheet-link { display: inline-block; margin-top: 12px; font-size: 12px; color: var(--accent); text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -185,7 +144,7 @@
     </div>
   </header>
 
-  <!-- USER -->
+  <!-- USER PAGE -->
   <div id="page-user" class="page active">
     <div class="hero">
       <div class="hero-label">Self Care Match</div>
@@ -197,14 +156,14 @@
       <span class="search-icon">🔍</span>
     </div>
     <div class="section-label" style="max-width:900px;margin:0 auto 12px;">機能カテゴリ</div>
-    <div class="categories-grid" id="categories-grid"></div>
+    <div id="categories-grid" class="categories-grid"></div>
   </div>
 
-  <!-- ADMIN -->
+  <!-- ADMIN PAGE -->
   <div id="page-admin" class="page">
     <div class="admin-wrap">
       <div class="admin-title">管理者ページ</div>
-      <div class="admin-sub">カテゴリの登録・動画URLの管理ができます</div>
+      <div class="admin-sub">スプレッドシートで動画を管理できます</div>
 
       <div class="pw-manage-card">
         <div class="pw-manage-label">📅 今月のパスワード</div>
@@ -217,25 +176,13 @@
         <div class="pw-changed-msg" id="pw-changed-msg">✓ 変更しました</div>
       </div>
 
-      <div class="add-form">
-        <div class="add-form-title">カテゴリを追加</div>
-        <div class="form-col">
-          <div class="form-row-inline">
-            <div class="form-group" style="max-width:72px">
-              <label class="form-label">絵文字</label>
-              <input class="form-input" id="input-icon" type="text" placeholder="🦵" maxlength="2">
-            </div>
-            <div class="form-group">
-              <label class="form-label">カテゴリ名</label>
-              <input class="form-input" id="input-name" type="text" placeholder="例：腰よサボれ、働け股関節">
-            </div>
-          </div>
-          <div>
-            <label class="form-label">説明（任意）</label>
-            <input class="form-input" id="input-desc" type="text" placeholder="例：ヒンジ動作・腰痛予防">
-          </div>
-          <button class="btn-primary" onclick="addCategory()">追加する</button>
-        </div>
+      <!-- スプシ同期 -->
+      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:24px;">
+        <button class="sync-btn" id="sync-btn" onclick="syncFromSheet()">
+          🔄 スプレッドシートから同期
+        </button>
+        <span class="sync-status" id="sync-status"></span>
+        <a href="https://docs.google.com/spreadsheets/d/1MiL_T4RoL1DoXdnT9xcSCXRoZYNrnMScKkJgvnqEjKI" target="_blank" class="sheet-link">📊 スプレッドシートを開く →</a>
       </div>
 
       <div class="admin-list" id="admin-list"></div>
@@ -243,6 +190,7 @@
   </div>
 </div>
 
+<!-- VIDEO PANEL -->
 <div class="video-panel" id="video-panel">
   <div class="panel-header">
     <div class="panel-title" id="panel-title"></div>
@@ -252,15 +200,11 @@
 </div>
 
 <script>
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbzgA2liSo5NUg3TGXp-ZMYV-D7GkLbfjxVJshzhSAoa0j65LK9W2E3zRGZxAsLfB6hr8A/exec';
+
 let currentPassword = 'care2026';
 let adminPassword = 'admin1234';
-let categories = [
-  { id: 1, icon: '🦵', name: '股関節を使いこなす', desc: '可動域・安定性の改善', videos: [] },
-  { id: 2, icon: '🫁', name: '呼吸を整える', desc: '呼吸筋・横隔膜トレーニング', videos: [] },
-  { id: 3, icon: '💪', name: '肩の可動域を広げる', desc: '肩関節の柔軟性向上', videos: [] },
-  { id: 4, icon: '🧍', name: '正しい姿勢を作る', desc: '体幹・姿勢改善', videos: [] },
-];
-let nextId = 5;
+let categories = [];
 
 function getYouTubeId(url) {
   const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/);
@@ -271,6 +215,65 @@ function getThumbnail(url) {
   return id ? `https://img.youtube.com/vi/${id}/mqdefault.jpg` : null;
 }
 
+// スプシからデータを取得してカテゴリに変換
+async function syncFromSheet() {
+  const btn = document.getElementById('sync-btn');
+  const status = document.getElementById('sync-status');
+  btn.classList.add('loading');
+  btn.disabled = true;
+  status.textContent = '同期中...';
+
+  try {
+    const res = await fetch(GAS_URL);
+    const rows = await res.json();
+
+    // カテゴリ別にグループ化（ステータスが「登録済」のもののみ）
+    const catMap = {};
+    rows.forEach(row => {
+      const cat = row['カテゴリ'];
+      const url = row['URL'];
+      const status = row['ステータス'];
+      if (!cat || !url || status !== '登録済') return;
+      if (!catMap[cat]) catMap[cat] = { name: cat, videos: [] };
+      catMap[cat].videos.push({
+        title: row['タイトル'] || 'YouTube動画',
+        url: url,
+        memo: row['メモ'] || ''
+      });
+    });
+
+    categories = Object.values(catMap).map((c, i) => ({
+      id: i + 1,
+      icon: getCatIcon(c.name),
+      name: c.name,
+      desc: `動画 ${c.videos.length}本`,
+      videos: c.videos
+    }));
+
+    renderCategories(categories);
+    renderAdminList();
+    status.textContent = `✓ ${categories.length}カテゴリ・${rows.filter(r => r['ステータス'] === '登録済').length}本を同期しました`;
+  } catch(e) {
+    status.textContent = '⚠️ 同期に失敗しました';
+  } finally {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+  }
+}
+
+// カテゴリ名からアイコンを自動判定
+function getCatIcon(name) {
+  if (name.includes('股関節') || name.includes('腰')) return '🦵';
+  if (name.includes('肩')) return '💪';
+  if (name.includes('呼吸')) return '🫁';
+  if (name.includes('姿勢')) return '🧍';
+  if (name.includes('足首') || name.includes('歩行')) return '🦶';
+  if (name.includes('体幹')) return '🏋️';
+  if (name.includes('膝')) return '🦿';
+  return '📌';
+}
+
+// ===== PASSWORD =====
 function checkPassword() {
   const input = document.getElementById('pw-input').value.trim();
   if (input === currentPassword || input === adminPassword) {
@@ -278,7 +281,7 @@ function checkPassword() {
     document.getElementById('admin-tab').style.display = isAdmin ? 'inline-block' : 'none';
     document.getElementById('pw-screen').style.display = 'none';
     document.getElementById('app').classList.add('active');
-    renderCategories(categories);
+    loadData();
   } else {
     const el = document.getElementById('pw-input');
     document.getElementById('pw-error').classList.add('show');
@@ -286,6 +289,7 @@ function checkPassword() {
     setTimeout(() => { el.classList.remove('error'); document.getElementById('pw-error').classList.remove('show'); }, 2000);
   }
 }
+
 function changePassword() {
   const v = document.getElementById('pw-new-input').value.trim();
   if (!v || v.length < 4) { alert('4文字以上で入力してください'); return; }
@@ -295,24 +299,86 @@ function changePassword() {
   const msg = document.getElementById('pw-changed-msg');
   msg.classList.add('show'); setTimeout(() => msg.classList.remove('show'), 3000);
 }
+
 function logout() {
   document.getElementById('app').classList.remove('active');
   document.getElementById('pw-screen').style.display = 'flex';
   document.getElementById('pw-input').value = '';
 }
 
+// ===== LOAD DATA =====
+async function loadData() {
+  const grid = document.getElementById('categories-grid');
+  grid.innerHTML = '<div class="loading-screen" style="grid-column:1/-1"><div class="spinner"></div><div>データを読み込んでいます...</div></div>';
+
+  try {
+    const res = await fetch(GAS_URL);
+    const rows = await res.json();
+
+    const catMap = {};
+    rows.forEach(row => {
+      const cat = row['カテゴリ'];
+      const url = row['URL'];
+      const status = row['ステータス'];
+      if (!cat || !url || status !== '登録済') return;
+      if (!catMap[cat]) catMap[cat] = { name: cat, videos: [] };
+      catMap[cat].videos.push({
+        title: row['タイトル'] || 'YouTube動画',
+        url: url,
+        memo: row['メモ'] || ''
+      });
+    });
+
+    categories = Object.values(catMap).map((c, i) => ({
+      id: i + 1,
+      icon: getCatIcon(c.name),
+      name: c.name,
+      desc: `動画 ${c.videos.length}本`,
+      videos: c.videos
+    }));
+
+    renderCategories(categories);
+  } catch(e) {
+    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1">データの読み込みに失敗しました<br><small>スプレッドシートに「登録済」の動画を追加してください</small></div>';
+  }
+}
+
+// ===== RENDER =====
 function renderCategories(list) {
-  document.getElementById('categories-grid').innerHTML = list.map(c => `
+  const grid = document.getElementById('categories-grid');
+  if (!list.length) {
+    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1">カテゴリがありません<br><small>スプレッドシートにステータス「登録済」の動画を追加してください</small></div>';
+    return;
+  }
+  grid.innerHTML = list.map(c => `
     <div class="category-card" onclick="openPanel(${c.id})">
       <span class="cat-icon">${c.icon}</span>
       <div class="cat-name">${c.name}</div>
-      <div class="cat-desc">${c.desc}</div>
       <div class="cat-count">${c.videos.length > 0 ? `動画 ${c.videos.length}本` : '動画準備中'}</div>
     </div>
-  `).join('') || '<div class="empty-state" style="grid-column:1/-1">カテゴリがありません</div>';
+  `).join('');
 }
+
+function renderAdminList() {
+  const el = document.getElementById('admin-list');
+  if (!categories.length) {
+    el.innerHTML = '<div class="empty-state">スプレッドシートから同期してください</div>';
+    return;
+  }
+  el.innerHTML = categories.map(c => `
+    <div class="admin-cat-item">
+      <div class="admin-cat-icon">${c.icon}</div>
+      <div class="admin-cat-info">
+        <div class="admin-cat-name">${c.name}</div>
+        <div class="admin-cat-desc">${c.videos.map(v => v.title).join('、')}</div>
+      </div>
+      <div class="admin-cat-badge">動画 ${c.videos.length}本</div>
+    </div>
+  `).join('');
+}
+
 function filterCategories(q) {
-  renderCategories(q ? categories.filter(c => c.name.includes(q) || c.desc.includes(q)) : categories);
+  renderCategories(q ? categories.filter(c => c.name.includes(q)) : categories);
 }
 
 function openPanel(id) {
@@ -321,15 +387,15 @@ function openPanel(id) {
   document.getElementById('panel-title').textContent = `${cat.icon} ${cat.name}`;
   const body = document.getElementById('panel-body');
   if (!cat.videos.length) {
-    body.innerHTML = '<div class="empty-panel">🎬<br><br>動画を準備中です<br><span style="font-size:12px">もうしばらくお待ちください</span></div>';
+    body.innerHTML = '<div class="empty-panel">🎬<br><br>動画を準備中です</div>';
   } else {
     body.innerHTML = `<div class="video-list">${cat.videos.map(v => {
       const thumb = getThumbnail(v.url);
       return `
         <div class="video-card">
-          ${thumb ? `<img class="video-thumb" src="${thumb}" alt="${v.title || ''}" onerror="this.style.display='none'">` : '<div class="video-thumb-placeholder">▶</div>'}
+          ${thumb ? `<img class="video-thumb" src="${thumb}" alt="${v.title}" onerror="this.style.display='none'">` : '<div class="video-thumb-placeholder">▶</div>'}
           <div class="video-info">
-            <div class="video-title">${v.title || 'YouTube動画'}</div>
+            <div class="video-title">${v.title}</div>
             ${v.memo ? `<div class="video-memo-text">${v.memo}</div>` : ''}
             <a class="video-link" href="${v.url}" target="_blank">YouTubeで見る →</a>
           </div>
@@ -338,120 +404,16 @@ function openPanel(id) {
   }
   document.getElementById('video-panel').classList.add('open');
 }
+
 function closePanel() { document.getElementById('video-panel').classList.remove('open'); }
 
-function renderAdmin() {
-  const el = document.getElementById('admin-list');
-  if (!categories.length) { el.innerHTML = '<div class="empty-state">まだカテゴリがありません</div>'; return; }
-  el.innerHTML = categories.map(c => `
-    <div class="admin-item" id="item-${c.id}">
-      <div class="admin-item-header">
-        <div class="admin-item-icon">${c.icon}</div>
-        <div class="admin-item-info">
-          <div class="admin-item-name">${c.name}</div>
-          <div class="admin-item-desc">${c.desc || '説明なし'}</div>
-        </div>
-        <div class="admin-item-badge">動画 ${c.videos.length}本</div>
-        <button class="btn-toggle" onclick="toggleVideoSection(${c.id})">動画を管理</button>
-        <button class="btn-delete" onclick="deleteCategory(${c.id})">削除</button>
-      </div>
-      <div class="video-section" id="vs-${c.id}">
-        <div class="video-section-title">動画を追加</div>
-        <div class="url-add-area">
-          <input class="url-title-input" id="vt-${c.id}" type="text" placeholder="タイトル（例：ヒップヒンジ基本解説）">
-          <input class="url-input" id="vu-${c.id}" type="text" placeholder="YouTube URL">
-          <input class="url-memo-input" id="vm-${c.id}" type="text" placeholder="メモ・概要（例：股関節の使い方を丁寧に解説）">
-          <button class="btn-add-url" onclick="addVideo(${c.id})">登録する</button>
-        </div>
-        <div class="registered-videos" id="vlist-${c.id}">${renderVideoList(c)}</div>
-      </div>
-    </div>
-  `).join('');
-}
-
-function renderVideoList(c) {
-  if (!c.videos.length) return '<div class="no-videos-hint">まだ動画が登録されていません</div>';
-  return c.videos.map((v, i) => {
-    const thumb = getThumbnail(v.url);
-    return `
-      <div class="rv-item" id="rv-${c.id}-${i}">
-        <div class="rv-item-main">
-          <div class="rv-thumb">
-            ${thumb ? `<img src="${thumb}" alt="" onerror="this.style.display='none'">` : '▶'}
-          </div>
-          <div class="rv-info">
-            <div class="rv-title">${v.title || 'YouTube動画'}</div>
-            <div class="rv-memo-preview">${v.memo || 'メモなし'}</div>
-          </div>
-          <div class="rv-actions">
-            <button class="btn-edit-video" onclick="toggleEditForm(${c.id}, ${i})">編集</button>
-            <button class="btn-remove-video" onclick="removeVideo(${c.id}, ${i})">✕</button>
-          </div>
-        </div>
-        <div class="rv-edit-form" id="ef-${c.id}-${i}">
-          <input type="text" id="et-${c.id}-${i}" value="${v.title || ''}" placeholder="タイトル">
-          <textarea id="em-${c.id}-${i}" placeholder="メモ・概要">${v.memo || ''}</textarea>
-          <button class="btn-save-edit" onclick="saveEdit(${c.id}, ${i})">保存</button>
-        </div>
-      </div>`;
-  }).join('');
-}
-
-function toggleVideoSection(id) {
-  document.getElementById(`vs-${id}`).classList.toggle('open');
-}
-function toggleEditForm(catId, i) {
-  document.getElementById(`ef-${catId}-${i}`).classList.toggle('open');
-}
-function saveEdit(catId, i) {
-  const cat = categories.find(c => c.id === catId);
-  cat.videos[i].title = document.getElementById(`et-${catId}-${i}`).value.trim();
-  cat.videos[i].memo  = document.getElementById(`em-${catId}-${i}`).value.trim();
-  document.getElementById(`vlist-${catId}`).innerHTML = renderVideoList(cat);
-  renderCategories(categories);
-}
-
-function addVideo(id) {
-  const cat = categories.find(c => c.id === id);
-  const url   = document.getElementById(`vu-${id}`).value.trim();
-  const title = document.getElementById(`vt-${id}`).value.trim();
-  const memo  = document.getElementById(`vm-${id}`).value.trim();
-  if (!url) { alert('URLを入力してください'); return; }
-  if (!url.includes('youtube') && !url.includes('youtu.be')) { alert('YouTubeのURLを入力してください'); return; }
-  cat.videos.push({ url, title, memo });
-  ['vu-','vt-','vm-'].forEach(p => document.getElementById(p+id).value = '');
-  document.getElementById(`vlist-${id}`).innerHTML = renderVideoList(cat);
-  document.querySelector(`#item-${id} .admin-item-badge`).textContent = `動画 ${cat.videos.length}本`;
-  renderCategories(categories);
-}
-function removeVideo(catId, i) {
-  const cat = categories.find(c => c.id === catId);
-  cat.videos.splice(i, 1);
-  document.getElementById(`vlist-${catId}`).innerHTML = renderVideoList(cat);
-  document.querySelector(`#item-${catId} .admin-item-badge`).textContent = `動画 ${cat.videos.length}本`;
-  renderCategories(categories);
-}
-function addCategory() {
-  const icon = document.getElementById('input-icon').value.trim() || '📌';
-  const name = document.getElementById('input-name').value.trim();
-  const desc = document.getElementById('input-desc').value.trim();
-  if (!name) { alert('カテゴリ名を入力してください'); return; }
-  categories.push({ id: nextId++, icon, name, desc, videos: [] });
-  ['input-icon','input-name','input-desc'].forEach(id => document.getElementById(id).value = '');
-  renderAdmin(); renderCategories(categories);
-}
-function deleteCategory(id) {
-  if (!confirm('削除しますか？')) return;
-  categories = categories.filter(c => c.id !== id);
-  renderAdmin(); renderCategories(categories); closePanel();
-}
 function showPage(name, btn) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById(`page-${name}`).classList.add('active');
   btn.classList.add('active');
   closePanel();
-  if (name === 'admin') renderAdmin();
+  if (name === 'admin') renderAdminList();
 }
 </script>
 </body>
